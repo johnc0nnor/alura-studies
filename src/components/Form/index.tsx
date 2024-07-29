@@ -1,22 +1,22 @@
 import React from "react";
 import Botao from "../Buttons";
 import style from "./Form.module.scss";
-import { ITarefa } from "../../types/tarefas";
+import { ITask } from "../../types/tasks";
 import { v4 as uuidv4 } from "uuid";
 
 class Form extends React.Component<
 {
-    setTarefas: React.Dispatch<React.SetStateAction<ITarefa[]>>
+    setTasks: React.Dispatch<React.SetStateAction<ITask[]>>
 }
 > {
     state = {
-        tarefa: "",
-        tempo: "00:00"
+        task: "",
+        time: "00:00"
     }
 
     adicionarTarefa(evento: React.FormEvent<HTMLFormElement>) {
         evento.preventDefault();
-        this.props.setTarefas(tarefasAntigas => 
+        this.props.setTasks(tarefasAntigas => 
             [
                 ...tarefasAntigas, 
                 {  
@@ -29,7 +29,7 @@ class Form extends React.Component<
         );
         // evento.preventDefault();
         // this.props.adicionarTarefa(this.state.tarefa, this.state.tempo);
-        this.setState({ tarefa: "", tempo: "00:00" });
+        this.setState({ task: "", time: "00:00" });
     }
     render() {
         return <form className={style.novaTarefa} onSubmit={this.adicionarTarefa.bind(this)}>
@@ -39,8 +39,8 @@ class Form extends React.Component<
                 </label>
                 <input 
                 type="text"
-                value={this.state.tarefa}
-                onChange={evento => this.setState({ ...this.state, tarefa: evento.target.value})}
+                value={this.state.task}
+                onChange={evento => this.setState({ ...this.state, task: evento.target.value})}
                 name="tarefa"
                 id="tarefa"
                 placeholder="Digite sua tarefa"
@@ -55,8 +55,8 @@ class Form extends React.Component<
                 type="time"
                 step="1"
                 name="tempo"
-                value={this.state.tempo}
-                onChange={evento => this.setState({ ...this.state, tempo: evento.target.value})}
+                value={this.state.time}
+                onChange={evento => this.setState({ ...this.state, time: evento.target.value})}
                 id="tempo"
                 min="00:00:00"
                 max="24:00:00"
