@@ -2,14 +2,20 @@ import { ITask } from '../../types/tasks';
 import style from './List.module.scss';
 import { Item } from './item';
 
-function Lista({ tasks }: { tasks: ITask[] }) {
+interface IProps {
+  tasks: ITask[],
+  selectTask: (task: ITask) => void
+}
+
+function Lista({ tasks, selectTask }: IProps) {
     return (
     <aside className={style.listaTarefas}>
       <h2> Estudos do dia </h2>
       <ul>
-        {tasks.map((item, index) => (
+        {tasks.map((item) => (
         <Item 
-          key={index}
+          selectTask={selectTask}
+          key={item.id}
         {...item} />
         ))}
       </ul>
