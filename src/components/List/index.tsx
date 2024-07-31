@@ -4,7 +4,7 @@ import { Item } from './item';
 
 interface IProps {
   tasks: ITask[],
-  selectTask: (task: ITask) => void
+  selectTask: (taskSelected: ITask) => void
 }
 
 function Lista({ tasks, selectTask }: IProps) {
